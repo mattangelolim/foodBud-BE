@@ -10,8 +10,10 @@ app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
 
 const UserRegisterRoute = require("./routers/admin/adminUserRegister");
+const CreatePackageRoute = require("./routers/admin/adminCreatePackage");
 
 app.use("/api", UserRegisterRoute);
+app.use("/api", CreatePackageRoute);
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
