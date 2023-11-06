@@ -2,18 +2,33 @@ const express = require("express");
 const router = express.Router();
 const Package = require("../../models/Package");
 const Headcount = require("../../models/Headcount");
-const Client = require("../../models/Client");
+const Client = require("../../models/client");
+const Event = require("../../models/Event");
+const Id = require("../../models/ids");
+
+// HELPER FUNCTION TO UPDATE IDS OF EVENT AND HEADCOUNT PER PACKAGE CREATION
+const updateIds = async (headcount_id, event_id) => {
+  try {
+    const updatedIds = await Id.update(
+      {
+        headcount_id: headcount_id,
+        event_id: event_id,
+      },
+      {
+        where: {
+          id: 1,
+        },
+      }
+    );
+    return updatedIds;
+  } catch (error) {
+    throw error;
+  }
+};
 
 router.post("/package/create", async (req, res) => {
   try {
-    const {
-      package_type,
-      headcount_id,
-      event_id,
-      client_email,
-      hc_kids,
-      hc_adults,
-    } = req.body;
+    const { package_type, client_email, hc_kids, hc_adults, celebrant_name, event_date, event_type} = req.body;
 
     const foundClient = await Client.findOne({
       where: {
@@ -27,6 +42,24 @@ router.post("/package/create", async (req, res) => {
       });
     }
 
+    const foundId = await Id.findOne({
+      where: {
+        id: 1,
+      },
+    });
+
+    if (!foundId) {
+      return res.status(400).json({
+        message: "No record found in the ids table with id = 1",
+      });
+    }
+
+    // console.log(foundId.headcount_id);
+    // console.log(foundId.event_id);
+
+    const headcount_id = foundId.headcount_id;
+    const event_id = foundId.event_id;
+
     // Create a package for Client
     const newPackage = await Package.create({
       package_type,
@@ -35,16 +68,38 @@ router.post("/package/create", async (req, res) => {
       client_email,
     });
 
+    // After creating package set the headcount
     const newHeadCount = await Headcount.create({
       headcount_id,
       hc_kids,
       hc_adults,
     });
 
-    res
-      .status(201)
-      .json({ message: "Package created successfully", package: newPackage, headcount: newHeadCount });
+    // add an event to be modify by client
+    const newEvent = await Event.create({
+      event_id,
+      celebrant_name,
+      event_date,
+      event_type
+    });
 
+    if (!newEvent) {
+      return res.status(400).json({
+        message: "Unable to add new event",
+      });
+    }
+
+    // INCREMENT 1 EVERY PACKAGE CREATED FOR ID HEADCOUNT AND EVENT
+    const updatedHeadCountId = headcount_id + 1;
+    const updatedEventId = event_id + 1;
+
+    // USE THE HELP FUNCTION TO UPDATE
+    const updatedIds = await updateIds(updatedHeadCountId, updatedEventId);
+
+    res.status(201).json({
+      message: "Package created successfully",
+      package: newPackage,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -2,33 +2,24 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const package = sequelize.define("package", {
+const id = sequelize.define("id", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  package_type: {
-    type: DataTypes.STRING,
+  headcount_id: {
+    type: DataTypes.INTEGER,
     allowNull: false,
-  },
-  client_email: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    unique: true,
   },
   event_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     unique: true,
   },
-  headcount_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: true,
-  }
 });
 
-// package.sync();
-
-module.exports = package;
+// id.sync();
+module.exports = id;

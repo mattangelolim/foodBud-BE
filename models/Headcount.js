@@ -24,6 +24,6 @@ const headcount = sequelize.define("headcount", {
   },
 });
 
-headcount.sync();
+// headcount.sync();
 
 module.exports = headcount;
