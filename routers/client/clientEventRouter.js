@@ -9,7 +9,7 @@ router.get("/client/events", async (req, res) => {
 
     const packageEvents = await Package.findAll({
       where: {
-        client_email: client_email
+        client_email: client_email,
       },
     });
 
@@ -17,29 +17,29 @@ router.get("/client/events", async (req, res) => {
       return res
         .status(400)
         .json({ message: "No package found with this email" });
-
-        
     }
 
     // NOT WORKING PROPERLY NOW
-    // console.log(packageEvents.dataValues)
+    const eventIds = packageEvents.map(packageEvent => packageEvent.event_id);
 
+    const foundEvents = await Event.findAll({
+      where: {
+        event_id: eventIds
+      },
+    });
 
-    // const foundEvents = await Event.findAll({
-    //   where: {
-    //     event_id: packageEvents.package.event_id
-    //   },
-    // });
+    const responseEvents = foundEvents.map(event => {
+      const matchingPackage = packageEvents.find(packageEvent => packageEvent.event_id === event.event_id);
+      return {
+        eventID: event.event_id,
+        celebrant: event.celebrant_name,
+        event_date: event.event_date,
+        event_type: event.event_type,
+        package_type: matchingPackage.package_type 
+      };
+    });
 
-    // const responseEvents = {
-    //   celebrant: foundEvents.celebrant_name,
-    //   event_date: foundEvents.event_date,
-    //   event_type: foundEvents.event_type,
-    // };
-
-    res
-      .status(200)
-      .json({ message: "Events Found!", events: packageEvents });
+    res.status(200).json({ message: "Events Found!", events: responseEvents });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });
