@@ -29,6 +29,6 @@ const package = sequelize.define("package", {
   }
 });
 
-// package.sync();
+// package.sync()
 
 module.exports = package;

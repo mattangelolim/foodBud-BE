@@ -14,15 +14,21 @@ const UserRegisterRoute = require("./routers/admin/adminUserRegister");
 const CreatePackageRoute = require("./routers/admin/adminCreatePackage");
 
 //CLIENT
-const clientEventRoute = require("./routers/client/clientEventRouter")
-const clientEditEventRoute = require("./routers/client/clientEditEventRouter")
-const clientFetchEventRoute = require("./routers/client/clientFetchEvent")
+const clientEventRoute = require("./routers/client/clientEventRouter");
+const clientEditEventRoute = require("./routers/client/clientEditEventRouter");
+const clientFetchEventRoute = require("./routers/client/clientFetchEvent");
+const clientAddOnsRoute = require("./routers/client/clientAddOnsRouter")
+
+// BOTH
+const loginUserRoute = require("./routers/loginRouter");
 
 app.use("/api", UserRegisterRoute);
 app.use("/api", CreatePackageRoute);
 app.use("/api", clientEventRoute);
-app.use("/api", clientEditEventRoute)
-app.use("/api", clientFetchEventRoute)
+app.use("/api", clientEditEventRoute);
+app.use("/api", clientFetchEventRoute);
+app.use("/api", loginUserRoute);
+app.use("/api", clientAddOnsRoute)
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);

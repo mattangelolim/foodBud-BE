@@ -47,6 +47,7 @@ router.post("/package/create", async (req, res) => {
         id: 1,
       },
     });
+    console.log(foundId)
 
     if (!foundId) {
       return res.status(400).json({

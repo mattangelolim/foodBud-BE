@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Event = require("../../models/Event");
+const Additional = require("../../models/additional")
 
 router.get("/get/event", async (req, res) => {
   try {
@@ -14,10 +15,24 @@ router.get("/get/event", async (req, res) => {
     if (!fetchEvent) {
       res.status(400).json({ message: "invalid event!" });
     }
-    res.status(200).json({ fetchEvent });
+
+    const newAdds = await Additional.findAll({
+      where:{
+        event_Id:event_id
+      }
+    })
+
+    console.log(newAdds)
+
+    const response = newAdds.addons_name
+
+    console.log(response)
+
+
+    res.status(200).json({ fetchEvent, newAdds });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: message.error });
+    res.status(500).json({ message: error.message });
   }
 });
 module.exports = router;
