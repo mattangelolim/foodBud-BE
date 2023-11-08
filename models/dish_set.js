@@ -2,37 +2,32 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const client = sequelize.define("client", {
-  client_id: {
+const dish_set = sequelize.define("dish_set", {
+  set_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  client_name: {
+  package_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  dish_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  set_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_address: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  client_contact: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  client_email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  client_city: {
+  set_type: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
 });
 
-// client.sync();
+// set.sync();
 
-module.exports = client;
+module.exports = set;

@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const dishes_menu = sequelize.define("dishes_menu", {
-    id: {
+const dish = sequelize.define("dish", {
+    dish_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
@@ -22,6 +22,6 @@ const dishes_menu = sequelize.define("dishes_menu", {
     },
   });
   
-  dishes_menu.sync();
+  // dish.sync();
   
-  module.exports = dishes_menu;
+  module.exports = dish;

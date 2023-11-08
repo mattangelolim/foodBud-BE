@@ -2,37 +2,32 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const client = sequelize.define("client", {
-  client_id: {
+const food_tasting = sequelize.define("food_tasting", {
+  ft_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  client_name: {
+  ft_recipient: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_address: {
+  ft_contact: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_contact: {
+  ft_address: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
-  client_city: {
+  ft_pinloc: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
   },
 });
 
-// client.sync();
+// food_tasting.sync();
 
-module.exports = client;
+module.exports = food_tasting;

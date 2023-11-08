@@ -1,16 +1,12 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const addon = sequelize.define("addon", {
-    id: {
+const addons = sequelize.define("addons", {
+    addons_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-    },
-    addons_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     addons_type: {
       type: DataTypes.STRING,
@@ -26,6 +22,6 @@ const addon = sequelize.define("addon", {
     },
   });
   
-//   addon.sync();
+//   addons.sync();
   
-  module.exports = addon;
+  module.exports = addons;
