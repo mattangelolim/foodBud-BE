@@ -5,6 +5,9 @@ const Headcount = require("../../models/Headcount");
 const Client = require("../../models/client");
 const Event = require("../../models/Event");
 const Id = require("../../models/ids");
+const Apppointment = require("../../models/appointment");
+const Meeting = require("../../models/onlineMeeting");
+const FoodTasting = require("../../models/foodTasting");
 
 // HELPER FUNCTION TO UPDATE IDS OF EVENT AND HEADCOUNT PER PACKAGE CREATION
 const updateIds = async (headcount_id, event_id) => {
@@ -28,7 +31,15 @@ const updateIds = async (headcount_id, event_id) => {
 
 router.post("/package/create", async (req, res) => {
   try {
-    const { package_type, client_email, hc_kids, hc_adults, celebrant_name, event_date, event_type} = req.body;
+    const {
+      package_type,
+      client_email,
+      hc_kids,
+      hc_adults,
+      celebrant_name,
+      event_date,
+      event_type,
+    } = req.body;
 
     const foundClient = await Client.findOne({
       where: {
@@ -47,7 +58,7 @@ router.post("/package/create", async (req, res) => {
         id: 1,
       },
     });
-    console.log(foundId)
+    console.log(foundId);
 
     if (!foundId) {
       return res.status(400).json({
@@ -60,7 +71,6 @@ router.post("/package/create", async (req, res) => {
 
     const headcount_id = foundId.headcount_id;
     const event_id = foundId.event_id;
-
     // Create a package for Client
     const newPackage = await Package.create({
       package_type,
@@ -81,8 +91,22 @@ router.post("/package/create", async (req, res) => {
       event_id,
       celebrant_name,
       event_date,
-      event_type
+      event_type,
     });
+
+    console.log(event_id);
+
+    const newAppointment = await Apppointment.create({
+      event_Id: event_id
+    });
+
+    const newMeeting = await Meeting.create({
+      event_Id: event_id
+    })
+
+    const newFoodTasting = await FoodTasting.create({
+      event_Id: event_id
+    })
 
     if (!newEvent) {
       return res.status(400).json({

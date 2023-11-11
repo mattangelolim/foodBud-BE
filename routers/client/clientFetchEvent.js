@@ -13,7 +13,7 @@ router.get("/get/event", async (req, res) => {
       },
     });
     if (!fetchEvent) {
-      res.status(400).json({ message: "invalid event!" });
+      return res.status(400).json({ message: "invalid event!" });
     }
 
     const newAdds = await Additional.findAll({
@@ -22,14 +22,16 @@ router.get("/get/event", async (req, res) => {
       }
     })
 
-    console.log(newAdds)
+    const additionals = newAdds.map(addons => addons.dataValues.addons_name)
 
-    const response = newAdds.addons_name
+    // console.log(additionals)
 
-    console.log(response)
+    // const response = newAdds.addons_name
+
+    // console.log(response)
 
 
-    res.status(200).json({ fetchEvent, newAdds });
+    res.status(200).json({ fetchEvent, additionals });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });

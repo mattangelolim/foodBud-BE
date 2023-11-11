@@ -22,6 +22,6 @@ const dishes_menu = sequelize.define("dishes_menu", {
     },
   });
   
-  // dishes_menu.sync();
+  // dishes_menu.sync()
   
   module.exports = dishes_menu;

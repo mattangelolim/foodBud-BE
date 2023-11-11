@@ -23,6 +23,8 @@ router.post("/additional/food", async (req, res) => {
     });
 
     console.log(Additional);
+
+    res.status(200).json(Additional)
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });
