@@ -44,6 +44,23 @@ router.get("/client/events", async (req, res) => {
     console.error(error);
     res.status(500).json({ message: error.message });
   }
+
+  
+});
+
+router.get("/get/event/all", async (req, res) => {
+  try {
+    const fetchEvent = await Event.findAll(); 
+
+    if (!fetchEvent || fetchEvent.length === 0) {
+      return res.status(400).json({ message: "No events found!" });
+    }
+
+    res.status(200).json({ events: fetchEvent });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
 });
 
 module.exports = router;
