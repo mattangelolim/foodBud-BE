@@ -12,6 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 //ADMIN
 const UserRegisterRoute = require("./routers/admin/adminUserRegister");
 const CreatePackageRoute = require("./routers/admin/adminCreatePackage");
+const FetchPackagesRoute = require("./routers/admin/adminFetchPackages")
+const countClientRoute = require("./routers/admin/adminClientCount")
 
 //CLIENT
 const clientEventRoute = require("./routers/client/clientEventRouter");
@@ -36,6 +38,9 @@ app.use("/api", clientAddOnsRoute);
 app.use("/api", clientFetchInvoiceRoute);
 app.use("/api", clientFTFormRoute);
 app.use("/api", clientOLFormRoute);
+app.use("/api", FetchPackagesRoute)
+app.use("/api", countClientRoute)
+
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
