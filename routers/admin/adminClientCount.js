@@ -12,4 +12,14 @@ router.get("/count", async (req, res) => {
   }
 });
 
+router.get("/clients", async (req, res) => {
+    try {
+      const clients = await Client.findAll();
+      res.json({ clients });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
 module.exports = router;
