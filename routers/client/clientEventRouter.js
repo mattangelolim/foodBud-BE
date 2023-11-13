@@ -50,7 +50,9 @@ router.get("/client/events", async (req, res) => {
 
 router.get("/get/event/all", async (req, res) => {
   try {
-    const fetchEvent = await Event.findAll(); 
+    const fetchEvent = await Event.findAll({
+      order: [['event_id', 'DESC']],
+    }); 
 
 
     // console.log(fetchEvent)
@@ -60,7 +62,8 @@ router.get("/get/event/all", async (req, res) => {
     console.log(eventIds)
     const packages = await Package.findAll({
       where: { event_id: eventIds },
-      attributes: ['event_id', 'client_email'], // Specify the attributes you want to retrieve
+      attributes: ['event_id', 'client_email'],
+
     });
 
     // Combine event and package data
