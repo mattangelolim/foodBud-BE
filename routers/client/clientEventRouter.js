@@ -52,11 +52,27 @@ router.get("/get/event/all", async (req, res) => {
   try {
     const fetchEvent = await Event.findAll(); 
 
-    if (!fetchEvent || fetchEvent.length === 0) {
-      return res.status(400).json({ message: "No events found!" });
-    }
 
-    res.status(200).json({ events: fetchEvent });
+    // console.log(fetchEvent)
+
+    const eventIds = fetchEvent.map(event => (event.dataValues.event_id))
+
+    console.log(eventIds)
+    const packages = await Package.findAll({
+      where: { event_id: eventIds },
+      attributes: ['event_id', 'client_email'], // Specify the attributes you want to retrieve
+    });
+
+    // Combine event and package data
+    const eventDataWithClientEmail = fetchEvent.map((event) => {
+      const matchingPackage = packages.find((pkg) => pkg.event_id === event.dataValues.event_id);
+      return {
+        ...event.dataValues,
+        client_email: matchingPackage ? matchingPackage.client_email : null,
+      };
+    });
+
+    res.status(200).json({ events: eventDataWithClientEmail });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });
