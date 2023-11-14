@@ -51,7 +51,7 @@ router.get("/client/events", async (req, res) => {
 router.get("/get/event/all", async (req, res) => {
   try {
     const fetchEvent = await Event.findAll({
-      order: [['event_id', 'DESC']],
+      order: [['event_id', 'DESC']]
     }); 
 
 
@@ -69,6 +69,7 @@ router.get("/get/event/all", async (req, res) => {
     // Combine event and package data
     const eventDataWithClientEmail = fetchEvent.map((event) => {
       const matchingPackage = packages.find((pkg) => pkg.event_id === event.dataValues.event_id);
+      // console.log(matchingPackage)
       return {
         ...event.dataValues,
         client_email: matchingPackage ? matchingPackage.client_email : null,
