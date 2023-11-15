@@ -1,0 +1,24 @@
+// models/Case.js
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
+
+const event_type = sequelize.define("event_type", {
+  id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  event_type_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: true,
+  },
+  type_name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+
+// event_type.sync();
+module.exports = event_type;
