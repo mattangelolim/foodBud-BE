@@ -3,7 +3,7 @@ const router = express.Router();
 const Event = require("../../models/Event");
 
 // AFTER CREATING MODEL, REQUIRE THE SPECIFIC MODEL YOU CREATED HERE
-const Dishes = require("../../models/dishes")
+const venue = require("../../models/venue")
 
 
 router.post("/edit/event", async (req, res) => {
