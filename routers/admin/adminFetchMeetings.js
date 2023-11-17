@@ -5,7 +5,9 @@ const Package = require("../../models/Package")
 
 router.get("/meeting/events", async (req, res) => {
   try {
-    const fetchMeetings = await OnlineMeeting.findAll();
+    const fetchMeetings = await OnlineMeeting.findAll({
+      order: [['event_id', 'DESC']]
+    });
 
 
     const eventIds = fetchMeetings.map(

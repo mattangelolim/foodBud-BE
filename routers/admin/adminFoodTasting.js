@@ -6,7 +6,9 @@ const Event = require("../../models/Event");
 router.get("/foodtasting/data", async (req, res) => {
   try {
     // Fetch all FoodTasting data
-    const allFoodTasting = await FoodTasting.findAll();
+    const allFoodTasting = await FoodTasting.findAll({
+      order: [['event_id', 'DESC']]
+    });
 
 
 
@@ -21,6 +23,7 @@ router.get("/foodtasting/data", async (req, res) => {
     const eventDishes = await Event.findAll({
       where: { event_id: eventIds },
       attributes: ["dish_1", "dish_2", "pasta", "dessert", "event_id"],
+      order: [['event_id', 'DESC']]
     });
 
     // const dishID = eventDishes.map((event) => event.dataValues.event_id)
