@@ -28,7 +28,7 @@ const clientFTFormRoute = require("./routers/client/ClientFTForm");
 const clientOLFormRoute = require("./routers/client/clientOLForm");
 
 // BOTH
-const loginUserRoute = require("./routers/loginRouter");
+const loginUser = require("./routers/loginRouter");
 
 app.use("/api", UserRegisterRoute);
 app.use("/api", CreatePackageRoute);
@@ -38,7 +38,7 @@ app.use("/api", clientEventRoute);
 app.use("/api", clientEditEventRoute);
 app.use("/api", clientFetchEventRoute);
 
-app.use("/api", loginUserRoute);
+app.use("/api", loginUser);
 
 app.use("/api", clientAddOnsRoute);
 app.use("/api", clientFetchInvoiceRoute);

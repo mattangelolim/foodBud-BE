@@ -8,12 +8,15 @@ router.post("/user/login", async (req, res) => {
 
     const loginUser = await Client.findOne({
       where: {
-        client_name: username,
+        client_email: username,
         client_contact: password,
       },
     });
 
-    //   console.log(loginUser)
+      // console.log(loginUser)
+
+      // const client_email =loginUser.dataValues.client_email
+
     if (!loginUser) {
       return res.status(400).json({
         message: "No user found",
