@@ -13,11 +13,11 @@ const online_meeting = sequelize.define("online_meeting", {
     allowNull: false,
   },
   date:{
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
     allowNull: true,
   },
   time:{
-    type: DataTypes.TIME,
+    type: DataTypes.STRING,
     allowNull: true,
   },
   notes:{

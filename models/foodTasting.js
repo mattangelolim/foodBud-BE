@@ -13,7 +13,7 @@ const foodtasting = sequelize.define("foodtasting", {
     allowNull: false,
   },
   date:{
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
     allowNull: true,
   },
   name:{
@@ -37,7 +37,7 @@ const foodtasting = sequelize.define("foodtasting", {
     allowNull:true
   },
   time:{
-    type: DataTypes.TIME,
+    type: DataTypes.STRING,
     allowNull: true,
   },
   status: {
