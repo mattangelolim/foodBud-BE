@@ -26,6 +26,7 @@ const clientAddOnsRoute = require("./routers/client/clientAddOnsRouter");
 const clientFetchInvoiceRoute = require("./routers/client/clientFetchInvoice");
 const clientFTFormRoute = require("./routers/client/ClientFTForm");
 const clientOLFormRoute = require("./routers/client/clientOLForm");
+const clientFetchFtRoute = require("./routers/client/clientFetchFT")
 
 // BOTH
 const loginUserRoute = require("./routers/loginRouter");
@@ -51,6 +52,7 @@ app.use("/api", adminFoodtastingRouter);
 app.use("/api", adminFetchMeetingRouter);
 app.use("/api", adminNetSalesRouter);
 app.use("/api", AvailableDate)
+app.use("/api", clientFetchFtRoute)
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
