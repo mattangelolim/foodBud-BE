@@ -29,6 +29,7 @@ const clientOLFormRoute = require("./routers/client/clientOLForm");
 
 // BOTH
 const loginUserRoute = require("./routers/loginRouter");
+const AvailableDate = require("./routers/admin/adminCreateAvailability")
 
 app.use("/api", UserRegisterRoute);
 app.use("/api", CreatePackageRoute);
@@ -49,6 +50,7 @@ app.use("/api", countClientRoute);
 app.use("/api", adminFoodtastingRouter);
 app.use("/api", adminFetchMeetingRouter);
 app.use("/api", adminNetSalesRouter);
+app.use("/api", AvailableDate)
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
