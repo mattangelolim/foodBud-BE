@@ -11,7 +11,14 @@ app.use(express.urlencoded({ extended: true }));
 const fs = require("fs")
 const https = require("https")
 
-const file = fs.readFileSync("./CF59AF1F4E14484296D82C851AB9719F.txt")
+// const file = fs.readFileSync("./CF59AF1F4E14484296D82C851AB9719F.txt")
+const key = fs.readFileSync('private.key')
+const cert = fs.readFileSync('certificate.crt')
+
+const cred = {
+  key,
+  cert
+}
 
 //ADMIN
 const UserRegisterRoute = require("./routers/admin/adminUserRegister");
@@ -60,10 +67,14 @@ app.use("/api", AvailableDate);
 app.use("/api", clientFetchFtRoute);
 app.use("/api", clientFetchOlRoute);
 
-app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
-  res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")
-})
+// app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
+//   res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")
+// })
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
 });
+
+
+const httpsServer = https.createServer(cred, app)
+httpsServer.listen(9002)
