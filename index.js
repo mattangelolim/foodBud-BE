@@ -8,6 +8,10 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
+const fs = require("fs")
+const https = require("https")
+
+const file = fs.readFileSync("./CF59AF1F4E14484296D82C851AB9719F.txt")
 
 //ADMIN
 const UserRegisterRoute = require("./routers/admin/adminUserRegister");
@@ -26,7 +30,8 @@ const clientAddOnsRoute = require("./routers/client/clientAddOnsRouter");
 const clientFetchInvoiceRoute = require("./routers/client/clientFetchInvoice");
 const clientFTFormRoute = require("./routers/client/ClientFTForm");
 const clientOLFormRoute = require("./routers/client/clientOLForm");
-const clientFetchFtRoute = require("./routers/client/clientFetchFT")
+const clientFetchFtRoute = require("./routers/client/clientFetchFT");
+const clientFetchOlRoute = require("./routers/client/clientFetchOL")
 
 // BOTH
 const loginUserRoute = require("./routers/loginRouter");
@@ -51,8 +56,13 @@ app.use("/api", countClientRoute);
 app.use("/api", adminFoodtastingRouter);
 app.use("/api", adminFetchMeetingRouter);
 app.use("/api", adminNetSalesRouter);
-app.use("/api", AvailableDate)
-app.use("/api", clientFetchFtRoute)
+app.use("/api", AvailableDate);
+app.use("/api", clientFetchFtRoute);
+app.use("/api", clientFetchOlRoute);
+
+app.get("/.well-known/pki-validation", (req,res) =>{
+  res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")
+})
 
 app.listen(port, () => {
   console.log(`app is listening on port ${port}`);

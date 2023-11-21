@@ -10,8 +10,6 @@ router.get("/foodtasting/data", async (req, res) => {
       order: [['event_id', 'DESC']]
     });
 
-
-
     // Extract unique event IDs
     const eventIds = allFoodTasting.map(
       (tasting) => tasting.dataValues.event_Id
@@ -25,9 +23,6 @@ router.get("/foodtasting/data", async (req, res) => {
       attributes: ["dish_1", "dish_2", "pasta", "dessert", "event_id"],
       order: [['event_id', 'DESC']]
     });
-
-    // const dishID = eventDishes.map((event) => event.dataValues.event_id)
-    // console.log(dishID)
 
     const combinedData = allFoodTasting.map((tasting) => {
         const matchingDish = eventDishes.find((dish) => dish.event_id === tasting.dataValues.event_Id);
