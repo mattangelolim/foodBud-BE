@@ -60,7 +60,7 @@ app.use("/api", AvailableDate);
 app.use("/api", clientFetchFtRoute);
 app.use("/api", clientFetchOlRoute);
 
-app.get("/.well-known/pki-validation", (req,res) =>{
+app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
   res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")
 })
 
