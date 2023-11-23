@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Client = require("../../models/client");
+// const AvailableDate = require("../../models/availableDate")
 
 router.get("/count", async (req, res) => {
   try {
