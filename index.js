@@ -28,6 +28,8 @@ const countClientRoute = require("./routers/admin/adminClientCount");
 const adminFoodtastingRouter = require("./routers/admin/adminFoodTasting");
 const adminFetchMeetingRouter = require("./routers/admin/adminFetchMeetings");
 const adminNetSalesRouter = require("./routers/admin/adminNetSalesTotal");
+const adminDishes = require("./routers/admin/adminDish");
+const adminPackage = require("./routers/admin/adminPackage");
 
 //CLIENT
 const clientEventRoute = require("./routers/client/clientEventRouter");
@@ -38,7 +40,7 @@ const clientFetchInvoiceRoute = require("./routers/client/clientFetchInvoice");
 const clientFTFormRoute = require("./routers/client/ClientFTForm");
 const clientOLFormRoute = require("./routers/client/clientOLForm");
 const clientFetchFtRoute = require("./routers/client/clientFetchFT");
-const clientFetchOlRoute = require("./routers/client/clientFetchOL")
+const clientFetchOlRoute = require("./routers/client/clientFetchOL");
 
 // BOTH
 const loginUserRoute = require("./routers/loginRouter");
@@ -66,6 +68,9 @@ app.use("/api", adminNetSalesRouter);
 app.use("/api", AvailableDate);
 app.use("/api", clientFetchFtRoute);
 app.use("/api", clientFetchOlRoute);
+
+app.use("/api", adminDishes)
+app.use("/api", adminPackage)
 
 // app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
 //   res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")
