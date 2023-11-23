@@ -8,14 +8,15 @@ router.post("/user/login", async (req, res) => {
 
     const loginUser = await Client.findOne({
       where: {
-        client_email: username,
+        client_name
+        : username,
         client_contact: password,
       },
     });
 
       // console.log(loginUser)
 
-      // const client_email =loginUser.dataValues.client_email
+      // const client_name =loginUser.dataValues.client_name
 
     if (!loginUser) {
       return res.status(400).json({
