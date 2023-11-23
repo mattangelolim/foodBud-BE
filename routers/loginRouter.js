@@ -8,7 +8,7 @@ router.post("/user/login", async (req, res) => {
 
     const loginUser = await Client.findOne({
       where: {
-        client_name: username,
+        client_email: username,
         client_contact: password,
       },
     });
