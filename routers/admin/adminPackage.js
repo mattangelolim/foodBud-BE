@@ -1,7 +1,9 @@
 const express = require("express")
 const router = express.Router()
-const Package = require("../../models/packageRate")
-const Op = require("sequelize")
+const Package = require("../../models/Package")
+const PackageRate = require("../../models/packageRate")
+const {Op, Sequelize} = require("sequelize")
+
 
 router.get("/all/packages", async (req,res) =>{
     try {
@@ -70,5 +72,21 @@ router.post("/delete/package", async (req, res) => {
     }
 });
 
+router.get('/package/names', async (req, res) => {
+  try {
+    const packageNames = await PackageRate.findAll({
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('package_name')), 'package_name']],
+    });
+
+    const packageNamesList = packageNames.map((Package) => Package.package_name);
+
+    res.json({ package_names: packageNamesList });
+
+  } catch (error) {
+
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 module.exports = router
