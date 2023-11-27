@@ -10,7 +10,7 @@ const event = sequelize.define("event", {
     primaryKey: true,
   },
   package_type: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   event_id: {
