@@ -8,17 +8,17 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
-const fs = require("fs")
-const https = require("https")
+const fs = require("fs");
+const https = require("https");
 
 // const file = fs.readFileSync("./CF59AF1F4E14484296D82C851AB9719F.txt")
-const key = fs.readFileSync('private.key')
-const cert = fs.readFileSync('certificate.crt')
+const key = fs.readFileSync("private.key");
+const cert = fs.readFileSync("certificate.crt");
 
 const cred = {
   key,
-  cert
-}
+  cert,
+};
 
 //ADMIN
 const UserRegisterRoute = require("./routers/admin/adminUserRegister");
@@ -30,6 +30,7 @@ const adminFetchMeetingRouter = require("./routers/admin/adminFetchMeetings");
 const adminNetSalesRouter = require("./routers/admin/adminNetSalesTotal");
 const adminDishes = require("./routers/admin/adminDish");
 const adminPackage = require("./routers/admin/adminPackage");
+const adminEmployee = require("./routers/admin/adminEmployee");
 
 //CLIENT
 const clientEventRoute = require("./routers/client/clientEventRouter");
@@ -44,7 +45,7 @@ const clientFetchOlRoute = require("./routers/client/clientFetchOL");
 
 // BOTH
 const loginUserRoute = require("./routers/loginRouter");
-const AvailableDate = require("./routers/admin/adminCreateAvailability")
+const AvailableDate = require("./routers/admin/adminCreateAvailability");
 
 app.use("/api", UserRegisterRoute);
 app.use("/api", CreatePackageRoute);
@@ -69,8 +70,9 @@ app.use("/api", AvailableDate);
 app.use("/api", clientFetchFtRoute);
 app.use("/api", clientFetchOlRoute);
 
-app.use("/api", adminDishes)
-app.use("/api", adminPackage)
+app.use("/api", adminDishes);
+app.use("/api", adminPackage);
+app.use("/api", adminEmployee);
 
 // app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
 //   res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")
@@ -80,6 +82,5 @@ app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
 });
 
-
-const httpsServer = https.createServer(cred, app)
-httpsServer.listen(9002)
+const httpsServer = https.createServer(cred, app);
+httpsServer.listen(9002);
