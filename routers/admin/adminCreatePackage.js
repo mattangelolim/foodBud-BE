@@ -82,7 +82,7 @@ router.post("/package/create", async (req, res) => {
     // add an event to be modify by client
     const newEvent = await Event.create({
       event_id,
-      package_type: package_type,
+      package_type,
       celebrant_name,
       event_date,
       event_type,
