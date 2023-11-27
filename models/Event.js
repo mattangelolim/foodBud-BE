@@ -9,6 +9,10 @@ const event = sequelize.define("event", {
     autoIncrement: true,
     primaryKey: true,
   },
+  package_type: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
   event_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -67,6 +71,6 @@ const event = sequelize.define("event", {
   },
 });
 
-// event.sync();
+event.sync();
 
 module.exports = event;
