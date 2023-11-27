@@ -1,7 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const Package = require("../../models/Package")
-const PackageRate = require("../../models/packageRate")
+const Package = require("../../models/packageRate")
 const {Op, Sequelize} = require("sequelize")
 
 
@@ -74,7 +73,7 @@ router.post("/delete/package", async (req, res) => {
 
 router.get('/package/names', async (req, res) => {
   try {
-    const packageNames = await PackageRate.findAll({
+    const packageNames = await Package.findAll({
       attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('package_name')), 'package_name']],
     });
 
