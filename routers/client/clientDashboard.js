@@ -61,6 +61,8 @@ router.get("/event/dashboard", async (req, res) => {
       celebrant_name: eventDetail.celebrant_name,
       event_date: eventDetail.event_date,
       event_type: eventDetail.event_type,
+      start_time: eventDetail.start_time,
+      venue: eventDetail.venue_address,
       theme: eventDetail.theme,
       hc_kids: headCountDets ? headCountDets.hc_kids : null,
       hc_adults: headCountDets ? headCountDets.hc_adults : null,
