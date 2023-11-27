@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Package = require("../../models/packageRate");
-const Op = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 
 router.get("/all/packages", async (req, res) => {
   try {
