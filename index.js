@@ -30,6 +30,7 @@ const adminFetchMeetingRouter = require("./routers/admin/adminFetchMeetings");
 const adminNetSalesRouter = require("./routers/admin/adminNetSalesTotal");
 const adminDishes = require("./routers/admin/adminDish");
 const adminPackage = require("./routers/admin/adminPackage");
+const adminCoverage = require("./routers/admin/adminCoverage");
 
 //CLIENT
 const clientEventRoute = require("./routers/client/clientEventRouter");
@@ -68,6 +69,7 @@ app.use("/api", adminNetSalesRouter);
 app.use("/api", AvailableDate);
 app.use("/api", clientFetchFtRoute);
 app.use("/api", clientFetchOlRoute);
+app.use("/api", adminCoverage);
 
 app.use("/api", adminDishes)
 app.use("/api", adminPackage)
