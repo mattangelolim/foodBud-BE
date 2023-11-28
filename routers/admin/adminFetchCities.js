@@ -1,23 +1,26 @@
 // cityRouter.js
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require("sequelize");
 const Client = require("../../models/client");
 
 // Define the API endpoint to get city counts
-router.get('/cities', async (req, res) => {
+router.get("/cities", async (req, res) => {
   try {
     // Use Sequelize's `count` function to get counts for each city
     const cityCounts = await Client.findAll({
-      attributes: ['client_address', [Sequelize.fn('COUNT', 'client_address'), 'count']],
-      group: ['client_address'],
+      attributes: [
+        "client_address",
+        [Sequelize.fn("COUNT", "client_address"), "count"],
+      ],
+      group: ["client_address"],
     });
 
     res.json(cityCounts);
   } catch (error) {
-    console.error('Error fetching city counts:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching city counts:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
