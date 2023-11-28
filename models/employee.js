@@ -1,27 +1,40 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const dishes_menu = sequelize.define("dishes_menu", {
-  id: {
+const employee = sequelize.define("employee", {
+  emp_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  dish_name: {
+
+  emp_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  dish_type: {
+
+  emp_position: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  dish_price: {
-    type: DataTypes.INTEGER,
+
+  emp_email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  emp_contactnum: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  emp_address: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });
 
-// dishes_menu.sync()
+// employee.sync();
 
-module.exports = dishes_menu;
+module.exports = employee;
