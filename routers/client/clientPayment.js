@@ -79,7 +79,7 @@ router.post('/client/charge', async (req, res) => {
   });
 
   // Delete payment route
-router.delete('/client/payment/:id', async (req, res) => {
+router.delete('/delete/payment/:id', async (req, res) => {
     const id = req.params.id;
 
     try {
