@@ -52,7 +52,7 @@ router.put('/:event_id', async (req, res) => {
       if (!coverageLink) {
         return res.status(404).json({ error: 'Coverage link not found for this event and id' });
       }
-  
+      
       // Update the coverage_link for the specified coverage link
       coverageLink.coverage_link = coverage_link;
       res.status(200).json({ error: 'Link updated successfully!' });
