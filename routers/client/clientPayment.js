@@ -14,6 +14,31 @@ router.get('/all/payments', async (req, res) => {
   }
 });
 
+router.get('/event/payments', async (req, res) => {
+    const eventId = req.query.event_id;
+
+    try {
+        console.log('Received request with eventId:', eventId);
+
+        if (!eventId) {
+            return res.status(400).json({ error: 'Event ID is required in the query parameters' });
+        }
+
+        const payments = await Payment.findAll({
+            where: {
+                event_id: eventId,
+            },
+        });
+
+        console.log('Retrieved payments:', payments);
+
+        res.json(payments);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 router.post('/client/payment', async (req, res) => {
     const { event_id, payment_description, payment_paid, payment_receipt } = req.body;
   
