@@ -52,12 +52,10 @@ router.post("/client/payment", async (req, res) => {
       payment_receipt,
     });
 
-    res
-      .status(200)
-      .json({
-        message:
-          "Payment submitted successfully! Kindly wait for Admin Confirmation",
-      });
+    res.status(200).json({
+      message:
+        "Payment submitted successfully! Kindly wait for Admin Confirmation",
+    });
     res.json(newPayment);
   } catch (error) {
     console.error(error);
