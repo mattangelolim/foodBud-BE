@@ -10,30 +10,31 @@ const gallery = sequelize.define("gallery", {
     primaryKey: true,
   },
   package_type: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   event_type: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   theme: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   celebrant_gender: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   celebrant_age: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   image: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
-gallery.sync();
+// gallery.sync();
+
 module.exports = gallery;
