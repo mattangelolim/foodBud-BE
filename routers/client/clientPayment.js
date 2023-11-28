@@ -61,6 +61,9 @@ router.post('/client/payment', async (req, res) => {
     }
   });
 
+// PAANO PO YUNG API NA KUNG ANO YUNG NASA INVOICE, YUN DIN DADAGDAG SA ACCOUNTS TABLE NI CLIENT PERO SAME COLUMNS ALANG MADADAGDAGAN TULAD SA /CLIENT/CHARGE
+// ANG INIISIP KO KASI MAGKAKAROON NG INVOICE ITEMS TAPOS KUNG ANO LAMAN NON YUN RIN YUNG MAG AADD DOON SA /CLIENT/CHARGE
+
 //   router.post('/client/availed', async (req, res) => {
 //     const { event_id, payment_description, payment_availed} = req.body;
   
