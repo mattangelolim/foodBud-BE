@@ -14,6 +14,23 @@ router.get("/all/payments", async (req, res) => {
   }
 });
 
+router.get("/all/payments/:event_id", async (req, res) => {
+    const { event_id } = req.params;
+  
+    try {
+      const payments = await Payment.findAll({
+        where: {
+          event_id: event_id,
+        },
+      });
+  
+      res.status(200).json({ payments });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+
 router.get("/event/payments", async (req, res) => {
   const eventId = req.query.event_id;
 
