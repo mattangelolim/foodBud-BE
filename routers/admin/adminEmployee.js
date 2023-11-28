@@ -14,6 +14,16 @@ router.get("/all/employee", async (req, res) => {
   }
 });
 
+router.get("/employee/count", async (req, res) => {
+  try {
+    const numberOfEmployees = await Employee.count();
+    res.json({ numberOfEmployees });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 router.post("/employee/register", async (req, res) => {
   try {
     const {

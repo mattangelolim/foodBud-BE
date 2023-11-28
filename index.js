@@ -33,6 +33,7 @@ const adminPackage = require("./routers/admin/adminPackage");
 const adminCoverage = require("./routers/admin/adminCoverage");
 const adminEmployee = require("./routers/admin/adminEmployee");
 const adminGallery = require("./routers/admin/adminGallery");
+const adminFetchDishes = require("./routers/admin/adminFetchDishes");
 
 //CLIENT
 const clientEventRoute = require("./routers/client/clientEventRouter");
@@ -83,6 +84,7 @@ app.use("/api", adminEmployee);
 app.use("/api", clientDashBoard);
 
 app.use("/api", clientPayment);
+app.use("/api", adminFetchDishes);
 
 // app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
 //   res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Payment = require("../../models/payment");
+const Sequelize = require("sequelize");
 
 router.get("/all/payments", async (req, res) => {
   try {
@@ -39,7 +40,6 @@ router.get("/event/payments", async (req, res) => {
   }
 });
 
-// Add Payment
 router.post("/client/payment", async (req, res) => {
   const { event_id, payment_description, payment_paid, payment_receipt } =
     req.body;
@@ -52,10 +52,12 @@ router.post("/client/payment", async (req, res) => {
       payment_receipt,
     });
 
-    res.status(200).json({
-      message:
-        "Payment submitted successfully! Kindly wait for Admin Confirmation",
-    });
+    res
+      .status(200)
+      .json({
+        message:
+          "Payment submitted successfully! Kindly wait for Admin Confirmation",
+      });
     res.json(newPayment);
   } catch (error) {
     console.error(error);
