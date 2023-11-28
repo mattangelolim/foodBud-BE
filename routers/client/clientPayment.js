@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Payment = require("../../models/payment");
-const Package = require('../../models/Package');
+const Package = require("../../models/Package");
 const Sequelize = require("sequelize");
 
 router.get("/all/payments", async (req, res) => {
@@ -64,38 +64,38 @@ router.post("/client/payment", async (req, res) => {
   }
 });
 
-router.get('/clients/payment', async (req, res) => {
-    try {
-        const clientsPayment = await Payment.findAll({
-            where: {
-                payment_paid: {
-                    [Sequelize.Op.not]: null,
-                },
-            },
-        });
+router.get("/clients/payment", async (req, res) => {
+  try {
+    const clientsPayment = await Payment.findAll({
+      where: {
+        payment_paid: {
+          [Sequelize.Op.not]: null,
+        },
+      },
+    });
 
-        res.json(clientsPayment);
-    } catch (error) {
-        console.error(error); // Log the error for debugging purposes
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+    res.json(clientsPayment);
+  } catch (error) {
+    console.error(error); // Log the error for debugging purposes
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
-router.get('/clients/charge', async (req, res) => {
-    try {
-        const clientsCharge = await Payment.findAll({
-            where: {
-                payment_availed: {
-                    [Sequelize.Op.not]: null,
-                },
-            },
-        });
+router.get("/clients/charge", async (req, res) => {
+  try {
+    const clientsCharge = await Payment.findAll({
+      where: {
+        payment_availed: {
+          [Sequelize.Op.not]: null,
+        },
+      },
+    });
 
-        res.json(clientsCharge);
-    } catch (error) {
-        console.error(error); // Log the error for debugging purposes
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+    res.json(clientsCharge);
+  } catch (error) {
+    console.error(error); // Log the error for debugging purposes
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 // PAANO PO YUNG API NA KUNG ANO YUNG NASA INVOICE, YUN DIN DADAGDAG SA ACCOUNTS TABLE NI CLIENT PERO SAME COLUMNS ALANG MADADAGDAGAN TULAD SA /CLIENT/CHARGE
 // ANG INIISIP KO KASI MAGKAKAROON NG INVOICE ITEMS TAPOS KUNG ANO LAMAN NON YUN RIN YUNG MAG AADD DOON SA /CLIENT/CHARGE
