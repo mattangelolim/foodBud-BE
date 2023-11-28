@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Client = require("../../models/client");
 // const AvailableDate = require("../../models/availableDate")
-//const Payment = require("../../models/payment");
+
 router.get("/count", async (req, res) => {
   try {
     const numberOfClients = await Client.count();

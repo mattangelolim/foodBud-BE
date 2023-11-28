@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Payment = require("../../models/payment");
 const Package = require("../../models/Package");
+
 const Sequelize = require("sequelize");
 
 router.get("/all/payments", async (req, res) => {
