@@ -20,5 +20,5 @@ const event_type = sequelize.define("event_type", {
   },
 });
 
-// event_type.sync();
+//event_type.sync();
 module.exports = event_type;

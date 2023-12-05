@@ -28,6 +28,6 @@ const client = sequelize.define("client", {
   },
 });
 
-// client.sync();
+//client.sync();
 
 module.exports = client;

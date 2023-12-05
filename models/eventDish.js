@@ -23,6 +23,6 @@ const event_dish = sequelize.define("event_dish", {
     },
   });
   
-  // event_dish.sync()
+  //event_dish.sync()
   
   module.exports = event_dish;

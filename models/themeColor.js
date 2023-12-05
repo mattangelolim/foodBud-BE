@@ -20,5 +20,5 @@ const theme_color = sequelize.define("theme_color", {
   },
 });
 
-// theme_color.sync();
+//theme_color.sync();
 module.exports = theme_color;

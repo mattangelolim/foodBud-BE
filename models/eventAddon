@@ -23,6 +23,6 @@ const event_addon = sequelize.define("event_addon", {
     },
   });
   
-  // event_addon.sync()
+  //event_addon.sync()
   
   module.exports = event_addon;

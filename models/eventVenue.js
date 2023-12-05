@@ -35,6 +35,6 @@ const event_venue = sequelize.define("event_venue", {
     },
   });
   
-  // event_venue.sync()
+  //event_venue.sync()
   
   module.exports = event_venue;

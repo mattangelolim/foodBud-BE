@@ -28,6 +28,6 @@ const miscellaneous = sequelize.define("miscellaneous", {
     },
   });
   
-  // miscellaneous.sync()
+  //miscellaneous.sync()
   
   module.exports = miscellaneous;

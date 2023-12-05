@@ -29,6 +29,6 @@ const reservation = sequelize.define("reservation", {
 
 });
 
-// reservation.sync()
+//reservation.sync()
 
 module.exports = reservation;

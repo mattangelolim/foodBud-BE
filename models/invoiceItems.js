@@ -28,6 +28,6 @@ const invoice_items = sequelize.define("invoice_items", {
     },
   });
   
-  // invoice_items.sync()
+  //invoice_items.sync()
   
   module.exports = invoice_items;

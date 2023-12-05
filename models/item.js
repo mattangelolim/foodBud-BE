@@ -23,6 +23,6 @@ const item = sequelize.define("item", {
   },
 });
 
-// item.sync();
+//item.sync();
 
 module.exports = item;

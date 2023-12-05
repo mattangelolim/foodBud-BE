@@ -20,5 +20,5 @@ const event_theme = sequelize.define("event_theme", {
   },
 });
 
-// event_theme.sync();
+//event_theme.sync();
 module.exports = event_theme;
