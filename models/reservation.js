@@ -2,32 +2,33 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const client = sequelize.define("client", {
+const reservation = sequelize.define("reservation", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  client_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  client_address: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  client_contact: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  client_email: {
-    type: DataTypes.STRING,
+  reservation_id: {
+    type: DataTypes.INTEGER,
     allowNull: false,
     unique: true,
   },
+  package_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  client_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  event_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+
 });
 
-//client.sync();
+//reservation.sync()
 
-module.exports = client;
+module.exports = reservation;

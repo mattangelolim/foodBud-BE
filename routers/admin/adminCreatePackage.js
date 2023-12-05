@@ -79,16 +79,10 @@ router.post("/package/create", async (req, res) => {
       client_email,
     });
 
-    // After creating package set the headcount
-    const newHeadCount = await Headcount.create({
-      headcount_id,
-      hc_kids,
-      hc_adults,
-    });
-
     // add an event to be modify by client
     const newEvent = await Event.create({
       event_id,
+      package_type,
       celebrant_name,
       event_date,
       event_type,
@@ -96,17 +90,24 @@ router.post("/package/create", async (req, res) => {
 
     console.log(event_id);
 
+    // After creating package set the headcount
+    const newHeadCount = await Headcount.create({
+      headcount_id,
+      hc_kids,
+      hc_adults,
+    });
+
     const newAppointment = await Apppointment.create({
-      event_Id: event_id
+      event_Id: event_id,
     });
 
     const newMeeting = await Meeting.create({
-      event_Id: event_id
-    })
+      event_Id: event_id,
+    });
 
     const newFoodTasting = await FoodTasting.create({
-      event_Id: event_id
-    })
+      event_Id: event_id,
+    });
 
     if (!newEvent) {
       return res.status(400).json({

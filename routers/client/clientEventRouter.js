@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Package = require("../../models/Package");
-const Event = require("../../models/Event");
+const themeColor = require("../../models/themeColor");
 
 router.get("/client/events", async (req, res) => {
   try {

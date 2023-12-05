@@ -8,17 +8,17 @@ const app = express();
 app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true }));
-const fs = require("fs")
-const https = require("https")
+const fs = require("fs");
+const https = require("https");
 
 // const file = fs.readFileSync("./CF59AF1F4E14484296D82C851AB9719F.txt")
-const key = fs.readFileSync('private.key')
-const cert = fs.readFileSync('certificate.crt')
+const key = fs.readFileSync("private.key");
+const cert = fs.readFileSync("certificate.crt");
 
 const cred = {
   key,
-  cert
-}
+  cert,
+};
 
 //ADMIN
 const UserRegisterRoute = require("./routers/admin/adminUserRegister");
@@ -30,6 +30,11 @@ const adminFetchMeetingRouter = require("./routers/admin/adminFetchMeetings");
 const adminNetSalesRouter = require("./routers/admin/adminNetSalesTotal");
 const adminDishes = require("./routers/admin/adminDish");
 const adminPackage = require("./routers/admin/adminPackage");
+const adminCoverage = require("./routers/admin/adminCoverage");
+const adminEmployee = require("./routers/admin/adminEmployee");
+const adminGallery = require("./routers/admin/adminGallery");
+const adminFetchDishes = require("./routers/admin/adminFetchDishes");
+const adminFetchCities = require("./routers/admin/adminFetchCities");
 
 //CLIENT
 const clientEventRoute = require("./routers/client/clientEventRouter");
@@ -41,6 +46,10 @@ const clientFTFormRoute = require("./routers/client/ClientFTForm");
 const clientOLFormRoute = require("./routers/client/clientOLForm");
 const clientFetchFtRoute = require("./routers/client/clientFetchFT");
 const clientFetchOlRoute = require("./routers/client/clientFetchOL");
+const clientDashBoard = require("./routers/client/clientDashboard");
+const clientPayment = require("./routers/client/clientPayment");
+const clientFetchAppointment = require("./routers/client/clientFetchAppointment");
+
 
 // BOTH
 //const loginUser = require("./routers/loginRouter");
@@ -69,9 +78,18 @@ app.use("/api", adminNetSalesRouter);
 app.use("/api", AvailableDate);
 app.use("/api", clientFetchFtRoute);
 app.use("/api", clientFetchOlRoute);
+app.use("/api", adminCoverage);
+app.use("/api", adminGallery);
 
-app.use("/api", adminDishes)
-app.use("/api", adminPackage)
+app.use("/api", adminDishes);
+app.use("/api", adminPackage);
+app.use("/api", adminEmployee);
+app.use("/api", clientDashBoard);
+
+app.use("/api", clientPayment);
+app.use("/api", adminFetchDishes);
+app.use("/api", adminFetchCities);
+app.use("/api", clientFetchAppointment);
 
 // app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
 //   res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")
@@ -81,6 +99,5 @@ app.listen(port, () => {
   console.log(`app is listening on port ${port}`);
 });
 
-
-const httpsServer = https.createServer(cred, app)
-httpsServer.listen(9002)
+const httpsServer = https.createServer(cred, app);
+httpsServer.listen(9002);

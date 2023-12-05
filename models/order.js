@@ -1,27 +1,24 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const dishes_menu = sequelize.define("dishes_menu", {
+const order = sequelize.define("order", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  dish_name: {
-    type: DataTypes.STRING,
+  order_id: {
+    type: DataTypes.INTEGER,
+    unique: true,
     allowNull: false,
   },
-  dish_type: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  dish_price: {
+  service_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
 });
 
-// dishes_menu.sync()
+//order.sync();
 
-module.exports = dishes_menu;
+module.exports = order;

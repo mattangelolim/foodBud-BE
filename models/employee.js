@@ -1,33 +1,35 @@
-// models/Case.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const client = sequelize.define("client", {
-  id: {
+const employee = sequelize.define("employee", {
+  emp_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  client_name: {
+  emp_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_address: {
+  emp_position: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_contact: {
+  emp_email: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_email: {
+  emp_contactnum: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+  },
+  emp_address: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
-//client.sync();
+// employee.sync();
 
-module.exports = client;
+module.exports = employee;

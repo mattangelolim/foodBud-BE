@@ -1,27 +1,24 @@
+// models/Case.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const dishes_menu = sequelize.define("dishes_menu", {
+const event_theme = sequelize.define("event_theme", {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  dish_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  dish_type: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  dish_price: {
+  event_theme_id: {
     type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: true,
+  },
+  theme_name: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });
 
-// dishes_menu.sync()
-
-module.exports = dishes_menu;
+//event_theme.sync();
+module.exports = event_theme;

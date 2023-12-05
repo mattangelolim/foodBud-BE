@@ -2,32 +2,39 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const client = sequelize.define("client", {
-  id: {
+const gallery = sequelize.define("gallery", {
+  gallery_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  client_name: {
+  package_type: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_address: {
+  event_type: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_contact: {
+  theme: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  client_email: {
+  celebrant_gender: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+  },
+  celebrant_age: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  image: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
-//client.sync();
+// gallery.sync();
 
-module.exports = client;
+module.exports = gallery;

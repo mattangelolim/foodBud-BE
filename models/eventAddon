@@ -1,0 +1,28 @@
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
+
+const event_addon = sequelize.define("event_addon", {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    packadd_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+    },
+    event_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    addons_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+  });
+  
+  //event_addon.sync()
+  
+  module.exports = event_addon;
