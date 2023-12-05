@@ -1,18 +1,12 @@
-// models/Case.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const employee = sequelize.define("employee", {
-  id: {
+  emp_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-  },
-  emp_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: true,
   },
   emp_name: {
     type: DataTypes.STRING,
@@ -36,6 +30,6 @@ const employee = sequelize.define("employee", {
   },
 });
 
-//employee.sync();
+// employee.sync();
 
 module.exports = employee;

@@ -20,7 +20,6 @@ const package_rate = sequelize.define("package_rate", {
   rate: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    unique: true,
   }
 });
 

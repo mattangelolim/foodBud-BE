@@ -13,12 +13,16 @@ const foodtasting = sequelize.define("foodtasting", {
     allowNull: false,
   },
   date:{
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
     allowNull: true,
   },
   name:{
     type: DataTypes.STRING,
     allowNull:true,
+  },
+  dish:{
+    type:DataTypes.STRING,
+    allowNull: true
   },
   contact:{
     type:DataTypes.STRING,
@@ -33,14 +37,14 @@ const foodtasting = sequelize.define("foodtasting", {
     allowNull:true
   },
   time:{
-    type: DataTypes.TIME,
+    type: DataTypes.STRING,
     allowNull: true,
   },
   status: {
     type: DataTypes.STRING,
     allowNull: false,
     defaultValue: "Up coming"
-  },
+  }
 });
 
 // foodtasting.sync();

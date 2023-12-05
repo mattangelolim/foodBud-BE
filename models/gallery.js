@@ -3,16 +3,11 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const gallery = sequelize.define("gallery", {
-  id: {
+  gallery_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-  },
-  gallery_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: true,
   },
   package_type: {
     type: DataTypes.STRING,
@@ -40,6 +35,6 @@ const gallery = sequelize.define("gallery", {
   },
 });
 
-//gallery.sync();
+// gallery.sync();
 
 module.exports = gallery;

@@ -5,12 +5,12 @@ const OnlineMeeting = require("../../models/onlineMeeting")
 router.post("/edit/meeting", async (req,res) =>{
     try {
         const event_id = req.query.event_id;
-        const { date, time, note } = req.body;
+        const { date, time, notes } = req.body;
 
         const updateMeeting = await OnlineMeeting.update({
             date: date,
             time: time,
-            notes: note
+            notes: notes
         },{
             where:{
                 event_Id: event_id
