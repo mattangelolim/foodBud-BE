@@ -44,7 +44,7 @@ const clientFetchOlRoute = require("./routers/client/clientFetchOL");
 
 // BOTH
 //const loginUser = require("./routers/loginRouter");
-const loginUserRoute = require("./routers/loginRouter");
+const loginUser = require("./routers/loginRouter");
 const AvailableDate = require("./routers/admin/adminCreateAvailability")
 
 app.use("/api", UserRegisterRoute);
