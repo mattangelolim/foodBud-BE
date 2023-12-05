@@ -16,21 +16,21 @@ router.get("/all/payments", async (req, res) => {
 });
 
 router.get("/all/payments/:event_id", async (req, res) => {
-    const { event_id } = req.params;
-  
-    try {
-      const payments = await Payment.findAll({
-        where: {
-          event_id: event_id,
-        },
-      });
-  
-      res.status(200).json({ payments });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  });
+  const { event_id } = req.params;
+
+  try {
+    const payments = await Payment.findAll({
+      where: {
+        event_id: event_id,
+      },
+    });
+
+    res.status(200).json({ payments });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 router.get("/event/payments", async (req, res) => {
   const eventId = req.query.event_id;
@@ -60,24 +60,22 @@ router.get("/event/payments", async (req, res) => {
 });
 
 router.post("/client/payment", async (req, res) => {
-  const { event_id, payment_description, payment_paid, payment_receipt } =
-    req.body;
+  const { event_id, payment_description, payment_paid } = req.body;
 
   try {
     const newPayment = await Payment.create({
       event_id,
       payment_description,
       payment_paid,
-      payment_receipt,
     });
 
     res.status(200).json({
       message:
         "Payment submitted successfully! Kindly wait for Admin Confirmation",
     });
-    res.json(newPayment);
+    // res.json(newPayment);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -92,7 +90,7 @@ router.get("/clients/payment", async (req, res) => {
       },
     });
 
-    res.json(clientsPayment);
+    // res.json(clientsPayment);
   } catch (error) {
     console.error(error); // Log the error for debugging purposes
     res.status(500).json({ error: "Internal Server Error" });
@@ -150,9 +148,9 @@ router.post("/client/charge", async (req, res) => {
     });
 
     res.status(200).json({ message: "Availed Services added successfully!" });
-    res.json(newPayment);
+    // res.json(newPayment);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
