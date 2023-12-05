@@ -49,6 +49,7 @@ const clientFetchOlRoute = require("./routers/client/clientFetchOL");
 const clientDashBoard = require("./routers/client/clientDashboard");
 const clientPayment = require("./routers/client/clientPayment");
 const clientFetchAppointment = require("./routers/client/clientFetchAppointment");
+const clientUserLogin = require("./routers/client/clientUserLogin");
 
 
 // BOTH
@@ -90,6 +91,7 @@ app.use("/api", clientPayment);
 app.use("/api", adminFetchDishes);
 app.use("/api", adminFetchCities);
 app.use("/api", clientFetchAppointment);
+app.use("/api", clientUserLogin);
 
 // app.get("/.well-known/pki-validation/CF59AF1F4E14484296D82C851AB9719F.txt", (req,res) =>{
 //   res.sendFile("/home/ubuntu/foodBud-BE/CF59AF1F4E14484296D82C851AB9719F.txt")

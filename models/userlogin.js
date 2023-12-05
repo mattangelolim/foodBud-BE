@@ -12,11 +12,13 @@ const userlogin = sequelize.define("userlogin", {
   client_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    //unique: true
   },
   username: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  //rename to password
   userpass: {
     type: DataTypes.STRING,
     allowNull: false,

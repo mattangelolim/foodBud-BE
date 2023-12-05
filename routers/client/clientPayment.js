@@ -7,8 +7,10 @@ const Sequelize = require("sequelize");
 
 router.get("/all/payments", async (req, res) => {
   try {
+    
     const payments = await Payment.findAll();
     res.status(200).json({ payments });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -26,6 +28,7 @@ router.get("/all/payments/:event_id", async (req, res) => {
     });
 
     res.status(200).json({ payments });
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
