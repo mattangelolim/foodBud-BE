@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Event = require("../../models/Event");
+const Payment = require("../../models/payment")
+
+const Gallery = require("../../models/gallery")
 
 // AFTER CREATING MODEL, REQUIRE THE SPECIFIC MODEL YOU CREATED HERE
 //const Payment = require("../../models/payment")

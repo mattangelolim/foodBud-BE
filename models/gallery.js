@@ -23,18 +23,18 @@ const gallery = sequelize.define("gallery", {
   },
   celebrant_gender: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   celebrant_age: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.INTEGER,
+    allowNull: true,
   },
   image: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
 });
 
-// gallery.sync();
+gallery.sync();
 
 module.exports = gallery;
