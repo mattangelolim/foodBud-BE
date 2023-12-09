@@ -65,7 +65,7 @@ router.get("/sort/gallery", async (req, res) => {
     const limit = parseInt(req.query.limit) || 5;
     const search = req.query.search || "";
     let sort = req.query.sort || "createdAt";
-    let galleryType = req.query.gallery || "All";
+    let galleryType = req.query.galleryType || "All";
     let celebrantGender = req.query.celebrantGender || "All";
     let eventType = req.query.eventType || "All";
 
@@ -87,16 +87,10 @@ router.get("/sort/gallery", async (req, res) => {
       "Corporate",
     ];
 
-    // Convert "All" to the full array for filtering
-    galleryType === "All"
-      ? (galleryType = galleryTypes)
-      : (galleryType = req.query.gallery.split(","));
-    celebrantGender === "All"
-      ? (celebrantGender = genders)
-      : (celebrantGender = req.query.celebrantGender.split(","));
-    eventType === "All"
-      ? (eventType = eventTypes)
-      : (eventType = req.query.eventType.split(","));
+    // Simplified assignments
+    celebrantGender = celebrantGender === "All" ? genders : celebrantGender;
+    galleryType = galleryType === "All" ? galleryTypes : galleryType;
+    eventType = eventType === "All" ? eventTypes : eventType;
 
     req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
 
@@ -153,5 +147,6 @@ router.get("/sort/gallery", async (req, res) => {
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 });
+
 
 module.exports = router;
