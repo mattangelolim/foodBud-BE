@@ -78,7 +78,7 @@ router.get("/sort/gallery", async (req, res) => {
       "Food",
       "Others",
     ];
-    const genders = ["Male", "Female"];
+    const genders = ["Male", "Female", "None"];
     const eventTypes = [
       "Baptismal",
       "Kids Party",
