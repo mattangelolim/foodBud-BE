@@ -8,12 +8,21 @@ const AvailableDate = sequelize.define("AvailableDate", {
     autoIncrement: true,
     primaryKey: true,
   },
+  date:{
+    type:DataTypes.DATEONLY,
+    allowNull:false,
+  },
   time: {
     type: DataTypes.TIME,
     allowNull: false,
   },
+  status:{
+    type: DataTypes.SMALLINT,
+    allowNull:false,
+    defaultValue: 1
+  }
 });
 
-// AvailableDate.sync();
+AvailableDate.sync();
 
 module.exports = AvailableDate;

@@ -31,6 +31,6 @@ const payment = sequelize.define("payment", {
     },
 });
 
-payment.sync();
+// payment.sync();
 
 module.exports = payment;

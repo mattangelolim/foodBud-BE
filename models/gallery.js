@@ -35,6 +35,6 @@ const gallery = sequelize.define("gallery", {
   },
 });
 
-gallery.sync();
+// gallery.sync();
 
 module.exports = gallery;

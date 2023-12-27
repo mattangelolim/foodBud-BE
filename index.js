@@ -37,6 +37,7 @@ const adminFetchDishes = require("./routers/admin/adminFetchDishes");
 const adminFetchCities = require("./routers/admin/adminFetchCities");
 const adminFbInformation = require("./routers/admin/adminFbInformation");
 const adminAdditionals = require("./routers/admin/adminadditionals");
+const adminAddSchedules = require("./routers/admin/adminAddSchedules")
 
 //CLIENT
 const clientEventRoute = require("./routers/client/clientEventRouter");
@@ -82,6 +83,7 @@ app.use("/api", clientFetchFtRoute);
 app.use("/api", clientFetchOlRoute);
 app.use("/api", adminCoverage);
 app.use("/api", adminGallery);
+app.use("/api", adminAddSchedules);
 app.use("/api", adminFbInformation);
 
 app.use("/api", adminDishes);

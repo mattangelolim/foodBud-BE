@@ -30,13 +30,13 @@ router.post("/user/register", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "mattlim248@gmail.com", // Your email address
-        pass: "jgfg drez nvln ietd", // Your email password
+        user: "foodbud4@gmail.com", // Your email address
+        pass: "rajt zlul xrjx zani", // Your email password
       },
     });
 
     const mailOptions = {
-      from: "mattlim248@gmail.com",
+      from: "foodbud4@gmail.com",
       to: client_email,
       subject: "Registration Successful",
       text: `Dear ${client_name},\n\nThank you for registering!\n\nDetails:\nName: ${client_name}\nAddress: ${client_address}\nContact: ${client_contact}\nEmail: ${client_email}\n\nPlease use your contact number as your password to the website, but you can change it anytime using our change password feature.`,
@@ -123,13 +123,13 @@ router.post("/user/forgot", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "mattlim248@gmail.com",
-        pass: "jgfg drez nvln ietd",
+        user: "foodbud4@gmail.com",
+        pass: "rajt zlul xrjx zani",
       },
     });
 
     const mailOptions = {
-      from: "mattlim248@gmail.com",
+      from: "foodbud4@gmail.com",
       to: clientEmail,
       subject: "Password Reset Request",
       text: `Dear ${existingClient.client_name},\n\nYou have requested a password reset. Click the following link to reset your password:\n${resetLink}\n\nIf you did not request this, please ignore this email.`,

@@ -71,6 +71,6 @@ const event = sequelize.define("event", {
   },
 });
 
-event.sync();
+// event.sync();
 
 module.exports = event;
