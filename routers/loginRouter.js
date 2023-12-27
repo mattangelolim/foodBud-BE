@@ -1,32 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const Client = require("../models/client");
+const Userlogin = require("../models/userlogin");
+const Client = require("../models/Client");
 
 router.post("/user/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const loginUser = await Client.findOne({
+    const loginUserCreds = await Userlogin.findOne({
       where: {
-        client_name
-        : username,
-        client_contact: password,
+        username: username,
+        userpass: password,
       },
     });
 
-      // console.log(loginUser)
-
-      // const client_name =loginUser.dataValues.client_name
-
-    if (!loginUser) {
+    if (!loginUserCreds) {
       return res.status(400).json({
         message: "No user found",
       });
     }
 
+    const loginUser = await Client.findOne({
+      where: {
+        client_name: username,
+      },
+    });
+
     res.status(200).json({
       message: "login successfully",
-      loginUser
+      loginUser,
     });
   } catch (error) {
     console.error(error);

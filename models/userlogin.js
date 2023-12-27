@@ -10,8 +10,9 @@ const userlogin = sequelize.define("userlogin", {
     primaryKey: true,
   },
   client_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
+    type: DataTypes.STRING,
+    allowNull: true,
+    // autoIncrement: true,
     //unique: true
   },
   username: {
@@ -21,10 +22,10 @@ const userlogin = sequelize.define("userlogin", {
   //rename to password
   userpass: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 });
 
-//userlogin.sync();
+userlogin.sync();
 
 module.exports = userlogin;
