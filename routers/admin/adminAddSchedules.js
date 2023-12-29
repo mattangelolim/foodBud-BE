@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const AvailableDate = require("../../models/availableDate")
 
-router.post("/add/date/time", async (req,res) =>{
+router.post("/add/date/time", async (req, res) => {
     try {
         const { date, time } = req.body;
 
@@ -13,7 +13,12 @@ router.post("/add/date/time", async (req,res) =>{
         }
 
         // Check the combination of date and time 
-        const existingRecord = await AvailableDate.findOne({ date, time });
+        const existingRecord = await AvailableDate.findOne({
+            where: {
+                date,
+                time
+            }
+        });
         if (existingRecord) {
             return res.status(400).json({ error: 'Duplicate entry. This date and time combination already exists.' });
         }
@@ -37,7 +42,7 @@ router.get("/available/dates", async (req, res) => {
             where: {
                 status: 1
             },
-            raw: true 
+            raw: true
         });
 
         // Calculate the count for each unique date
@@ -76,9 +81,9 @@ router.get("/time/available", async (req, res) => {
                 date,
                 status: 1
             },
-            raw: true 
+            raw: true
         });
-        
+
         const uniqueAvailableTimes = [...new Set(availableTimes.map(entry => entry.time))];
 
         res.status(200).json({ availableTimes: uniqueAvailableTimes });
