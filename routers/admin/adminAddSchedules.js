@@ -20,7 +20,7 @@ router.post("/add/date/time", async (req, res) => {
             }
         });
         if (existingRecord) {
-            return res.status(400).json({ error: 'Duplicate entry. This date and time combination already exists.' });
+            return res.status(200).json({ message: 'Duplicate entry.' });
         }
 
         // Save the date and time
