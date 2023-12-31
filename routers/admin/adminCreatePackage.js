@@ -144,9 +144,6 @@ router.post("/package/create", async (req, res) => {
 
         // Wait for all the promises to resolve
         const postAdditionalResults = await Promise.all(postAdditionalPromises);
-
-        // Continue with your code or return the response as needed
-        console.log("Additional records created:", postAdditionalResults);
       }
     }
 
