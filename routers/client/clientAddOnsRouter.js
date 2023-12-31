@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Additionals = require("../../models/additional");
 const AddonsMenu = require("../../models/addonMenu");
+const PackageAddons = require("../../models/addonsPackage")
 
 router.post("/additional/food", async (req, res) => {
   try {

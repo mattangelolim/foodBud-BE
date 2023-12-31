@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Package = require("../../models/Package");
-const themeColor = require("../../models/themeColor");
+const PackageAddons = require("../../models/addonsPackage")
 const Event = require("../../models/Event")
 
 router.get("/client/events", async (req, res) => {
@@ -36,7 +36,7 @@ router.get("/client/events", async (req, res) => {
         celebrant: event.celebrant_name,
         event_date: event.event_date,
         event_type: event.event_type,
-        package_type: matchingPackage.package_type 
+        package_type: matchingPackage.package_type
       };
     });
 
@@ -46,14 +46,14 @@ router.get("/client/events", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 
-  
+
 });
 
 router.get("/get/event/all", async (req, res) => {
   try {
     const fetchEvent = await Event.findAll({
       order: [['event_id', 'DESC']]
-    }); 
+    });
 
 
     // console.log(fetchEvent)
@@ -84,4 +84,49 @@ router.get("/get/event/all", async (req, res) => {
   }
 });
 
+router.get("/get/client/package", async (req, res) => {
+
+  try {
+
+    const eventId = req.query.eventId
+
+    const findEvent = await Event.findOne({
+      where: {
+        event_id: eventId
+      },
+      attributes: ['package_type']
+    })
+
+    const packageType = findEvent.package_type;
+
+    // Check if the package_type exists in the addonsPackage table
+    const addonsExist = await PackageAddons.findOne({
+      where: {
+        package_type: packageType
+      }
+    });
+
+    if (!addonsExist) {
+      return res.status(200).json({ message: null });
+    }
+
+    const allAddons = await PackageAddons.findAll({
+      where: {
+        package_type: packageType
+      },
+      attributes: ['addons_name'] // Specify only the addons_name attribute
+    });
+
+    // Extract the addons_name from the result and return it in a single array
+    const addonsNames = allAddons.map(addon => addon.addons_name);
+
+    // Return the addons names
+    res.status(200).json({ addons: addonsNames });
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: error.message })
+  }
+
+
+})
 module.exports = router;

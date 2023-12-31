@@ -8,6 +8,8 @@ const Id = require("../../models/ids");
 const Apppointment = require("../../models/appointment");
 const Meeting = require("../../models/onlineMeeting");
 const FoodTasting = require("../../models/foodTasting");
+const PackageAddons = require("../../models/addonsPackage");
+const Additional = require("../../models/additional")
 
 // HELPER FUNCTION TO UPDATE IDS OF EVENT AND HEADCOUNT PER PACKAGE CREATION
 const updateIds = async (headcount_id, event_id) => {
@@ -121,6 +123,33 @@ router.post("/package/create", async (req, res) => {
 
     // USE THE HELP FUNCTION TO UPDATE
     const updatedIds = await updateIds(updatedHeadCountId, updatedEventId);
+
+    if (package_type != "Budget Package" || "Deluxe Package") {
+      const allAddons = await PackageAddons.findAll({
+        where: {
+          package_type: package_type
+        },
+        attributes: ['addons_name']
+      });
+
+      const addonsNames = allAddons.map(addon => addon.addons_name);
+
+      if (addonsNames.length > 0) {
+        const postAdditionalPromises = addonsNames.map(async (addonName) => {
+          return await Additional.create({
+            event_Id: event_id,
+            addons_name: addonName,
+          });
+        });
+
+        // Wait for all the promises to resolve
+        const postAdditionalResults = await Promise.all(postAdditionalPromises);
+
+        // Continue with your code or return the response as needed
+        console.log("Additional records created:", postAdditionalResults);
+      }
+    }
+
 
     res.status(201).json({
       message: "Package created successfully",
