@@ -53,16 +53,19 @@ const clientDashBoard = require("./routers/client/clientDashboard");
 const clientPayment = require("./routers/client/clientPayment");
 const clientFetchAppointment = require("./routers/client/clientFetchAppointment");
 const clientUserLogin = require("./routers/client/clientUserLogin");
-
+const clientTransactionRouter = require("./routers/client/clientTransactionRouter")
 // BOTH
 //const loginUser = require("./routers/loginRouter");
 const loginUser = require("./routers/loginRouter");
 const AvailableDate = require("./routers/admin/adminCreateAvailability");
 
+app.use("/uploads", express.static("./uploads"));
+
 app.use("/api", UserRegisterRoute);
 app.use("/api", CreatePackageRoute);
 
 app.use("/api", clientEventRoute);
+app.use("/api", clientTransactionRouter)
 
 app.use("/api", clientEditEventRoute);
 app.use("/api", clientFetchEventRoute);
