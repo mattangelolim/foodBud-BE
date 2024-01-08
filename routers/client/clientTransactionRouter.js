@@ -24,7 +24,7 @@ router.post("/add/transaction", upload.single('receipt'), async (req, res) => {
 
         // Create a new transaction with the received data
         const newTransaction = await TransactionModel.create({
-            event_id:event_id,
+            event_id: event_id,
             Receipt: receipt,
             status: 'Pending',
             description: description || null,
@@ -44,7 +44,7 @@ router.get("/get/transactions", async (req, res) => {
         // Fetch all transactions with the specified event_id from the database
         const transactions = await TransactionModel.findAll({
             where: { event_id: event_id },
-            attributes: ['Receipt', 'status', 'description', 'createdAt'] 
+            attributes: ['Receipt', 'status', 'description', 'createdAt']
         });
 
         if (!transactions || transactions.length === 0) {
@@ -59,6 +59,35 @@ router.get("/get/transactions", async (req, res) => {
     }
 });
 
+router.post("/accept/transaction", async (req, res) => {
+    try {
+        const { event_id, description } = req.query;
+        const { status } = req.body
+
+        if (status === 'Rejected') {
+            // If the status is rejected, delete the data in the Receipt column
+            await TransactionModel.update({ status: status, Receipt: null }, {
+                where: {
+                    event_id: event_id,
+                    description: description
+                }
+            });
+        }else{
+            const foundRow = await TransactionModel.update({ status: status }, {
+                where: {
+                    event_id: event_id,
+                    description: description
+                }
+            });
+        }
+
+        res.status(200).json({ message: "Updated Transaction" })
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: error.message })
+    }
+})
 
 module.exports = router
 
