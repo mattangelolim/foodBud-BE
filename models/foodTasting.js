@@ -12,41 +12,40 @@ const foodtasting = sequelize.define("foodtasting", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  date:{
+  date: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  name:{
+  name: {
     type: DataTypes.STRING,
-    allowNull:true,
+    allowNull: true,
   },
-  dish:{
-    type:DataTypes.STRING,
-    allowNull: true
+  dish: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
-  contact:{
-    type:DataTypes.STRING,
-    allowNull:true
+  contact: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
-  address:{
-    type:DataTypes.STRING,
-    allowNull:true,
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
-  google_pin:{
-    type:DataTypes.STRING,
-    allowNull:true
+  google_pin: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
-  time:{
+  time: {
     type: DataTypes.STRING,
     allowNull: true,
   },
   status: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: "Up coming"
-  }
+    defaultValue: "Up coming",
+  },
 });
 
 // foodtasting.sync();
-
 module.exports = foodtasting;

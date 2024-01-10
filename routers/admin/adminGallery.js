@@ -148,5 +148,4 @@ router.get("/sort/gallery", async (req, res) => {
   }
 });
 
-
 module.exports = router;
