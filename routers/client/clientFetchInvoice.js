@@ -4,6 +4,8 @@ const Package = require("../../models/Package")
 const Package_Rate = require("../../models/packageRate")
 const Additional = require("../../models/additional");
 const AddOnMenu = require("../../models/addonMenu");
+const Headcount = require("../../models/Headcount")
+const { Op } = require('sequelize');
 
 
 router.get("/invoice/receipt", async (req,res) =>{
@@ -14,6 +16,16 @@ router.get("/invoice/receipt", async (req,res) =>{
                 event_id:event_id
             }
         })
+        const HeadCount = await Headcount.findOne({
+            where:{
+                headcount_id:event_id
+            },
+            attributes:['hc_kids', 'hc_adults']
+        })
+
+        const totalHeadCount = HeadCount.hc_kids + HeadCount.hc_adults;
+
+        console.log("Total Headcount:", totalHeadCount);
 
         if(!PackageFound){
             res.status(400).json({ message: "NO event found"})
@@ -23,7 +35,10 @@ router.get("/invoice/receipt", async (req,res) =>{
 
         const PackageRate = await Package_Rate.findOne ({
             where:{
-                package_name: package_avail
+                package_name: package_avail,
+                pax_count: {
+                    [Op.gte]: totalHeadCount
+                  }
             }
         })
 
