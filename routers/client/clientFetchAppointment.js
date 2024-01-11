@@ -113,12 +113,21 @@ router.get("/show/appointments", async (req, res) => {
       const foodTastingInfo = findFoodTasting.find(foodtasting => foodtasting.event_Id === eventId);
       return {
         datetime: (foodTastingInfo ? `${foodTastingInfo.date} ${foodTastingInfo.time}` : ''),
-        description: (foodTastingInfo ? `Please contact ${foodTastingInfo.name} by texting/calling ${foodTastingInfo.contact}` : ''),
+        description: (foodTastingInfo ? `Please contact ${foodTastingInfo.name} ` : ''),
         service: (foodTastingInfo ? 'Food Tasting' : '')
       };
     });
 
-    res.status(200).json({ appointments: [...response, ...response2, ...response3] });
+    const combinedResponses = [...response, ...response2, ...response3];
+
+    // Sort the combined responses by datetime
+    const sortedAppointments = combinedResponses.sort((a, b) => {
+      const dateA = new Date(a.datetime).getTime();
+      const dateB = new Date(b.datetime).getTime();
+      return dateA - dateB;
+    });
+
+    res.status(200).json({ appointments: sortedAppointments });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
