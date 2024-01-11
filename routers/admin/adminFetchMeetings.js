@@ -9,7 +9,6 @@ router.get("/meeting/events", async (req, res) => {
       order: [['event_id', 'DESC']]
     });
 
-
     const eventIds = fetchMeetings.map(
       (meetings) => meetings.dataValues.event_Id
     );
