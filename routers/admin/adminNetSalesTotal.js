@@ -9,8 +9,19 @@ const { Op } = require("sequelize");
 
 router.get("/net/sales", async (req, res) => {
   try {
+    const startDate = req.query.startDate; 
+    const endDate = req.query.endDate;  
+
+    const today = new Date();
+    const currentDateString = today.toISOString().split("T")[0];
     // Find all packages
-    const foundPackages = await Package.findAll();
+    const foundPackages = await Package.findAll({
+      where: {
+        createdAt: {
+          [Op.between]: [startDate || currentDateString, endDate || currentDateString],
+        },
+      },
+    });
 
     // Extract headcount IDs from each package
     const headcountIds = foundPackages.map((package) => package.headcount_id);

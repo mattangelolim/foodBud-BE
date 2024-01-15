@@ -1,11 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const Client = require("../../models/client");
+const { Op } = require("sequelize")
 // const AvailableDate = require("../../models/availableDate")
 
 router.get("/count", async (req, res) => {
   try {
-    const numberOfClients = await Client.count();
+    const startDate = req.query.startDate;
+    const endDate = req.query.endDate;
+
+    const today = new Date();
+    const currentDateString = today.toISOString().split("T")[0];
+
+    const numberOfClients = await Client.count({
+      where: {
+        createdAt: {
+          [Op.between]: [startDate || currentDateString, endDate || currentDateString],
+        },
+      },
+    });
     res.json({ numberOfClients });
   } catch (error) {
     console.error(error);

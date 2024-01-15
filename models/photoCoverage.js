@@ -1,27 +1,27 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const PackageAddons = sequelize.define("PackageAddons", {
+const PhotoCoverage = sequelize.define("PhotoCoverage", {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    package_type: {
+    event_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    addons_name: {
+    link: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    addons_price: {
-      type: DataTypes.INTEGER,
+    coverage_type: {
+      type: DataTypes.STRING,
       allowNull: false,
-    },
+    }
   });
   
-  // PackageAddons.sync()
+  PhotoCoverage.sync()
   
-  module.exports = PackageAddons;
+  module.exports = PhotoCoverage;

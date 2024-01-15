@@ -23,6 +23,6 @@ const AvailableDate = sequelize.define("AvailableDate", {
   }
 });
 
-AvailableDate.sync();
+// AvailableDate.sync();
 
 module.exports = AvailableDate;

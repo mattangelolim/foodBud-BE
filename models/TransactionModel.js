@@ -25,6 +25,6 @@ const TransactionModel = sequelize.define('TransactionModel', {
     }
 })
 
-TransactionModel.sync()
+// TransactionModel.sync()
 
 module.exports = TransactionModel;
