@@ -33,4 +33,27 @@ router.post("/upload/coverage", async (req, res) => {
   }
 });
 
+router.get("/fetch/coverage", async (req, res) => {
+    try {
+      const event_id = req.query.event_id;
+  
+      // Query the database to find the record based on event_id
+      const photoCoverage = await PhotoCoverage.findAll({
+        attributes: ['link', 'coverage_type'], // Specify the attributes to retrieve
+        where: {
+          event_id,
+        },
+      });
+  
+      if (!photoCoverage) {
+        return res.status(404).json({ message: "Record not found" });
+      }
+  
+      res.status(200).json(photoCoverage);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: error.message });
+    }
+  });
+
 module.exports = router;
